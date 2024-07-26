@@ -1,13 +1,17 @@
 {
-  "name": "vue-git-hub-browser",
-  "private": true,
-  "version": "0.0.0",
-  "type": "module",
+  "name": "@greener-games/vue-git-hub-browser",
+  "private": false,
+  "version": "0.0.1",
+  "main": "dist/vue-git-hub-browser.umd.js",
+  "module": "dist/vue-git-hub-browser.es.js",
+  "types": "dist/index.d.ts",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
+    "build": "vite build"
   },
+  "files": [
+    "dist",
+    "package.json"
+  ],
   "dependencies": {
     "axios": "^1.7.2",
     "pinia": "^2.1.7",
