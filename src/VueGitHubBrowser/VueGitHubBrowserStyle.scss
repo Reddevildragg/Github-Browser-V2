@@ -25,4 +25,10 @@ $project-colors: (
   .#{$scss-prefix}bg-#{$color} {
     background-color: var(--#{$scss-prefix}#{$color}) !important;
   }
+
+  @each $color, $value in $project-colors {
+    .#{$scss-prefix}txt-#{$color} {
+      color: var(--#{$scss-prefix}#{$color}) !important;
+    }
+  }
 }

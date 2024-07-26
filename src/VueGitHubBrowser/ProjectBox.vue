@@ -1,9 +1,14 @@
 <template>
-  <img :src=GetImage()
-       alt="Card Image" class="card-image"/>
-  <div class="card-content ghb-bg-card-background">
-    <h3>{{ cardDetails.name }}</h3>
-    <p>{{ cardDetails.description }}</p>
+  <div class="card">
+    <a :href="cardDetails?.html_url" target="_blank" class="card-link">
+      <img :src=GetImage()
+           alt="Card Image" class="card-image"/>
+      <div class="card-content ghb-bg-card-background">
+        <h3 class="ghb-txt-card-title">{{ cardDetails?.name }}</h3>
+        <p class="ghb-txt-card-text">{{ cardDetails?.description }}</p>
+      </div>
+    </a>
+
   </div>
 </template>
 
@@ -31,8 +36,33 @@ function GetImage() {
 </script>
 
 <style lang="scss" scoped>
+
 .card-grid {
   .card {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    width: calc(33.333% - 16px); // Adjust based on the number of cards per row
+    position: relative;
+    box-sizing: border-box; // Include padding and border in the element's width and height
+
+    @media (max-width: 768px) {
+      width: calc(50% - 16px);
+    }
+
+    @media (max-width: 480px) {
+      width: 100%;
+    }
+
+    .card-link{
+      text-decoration: none;
+      color: inherit;
+      width: 100%;
+    }
 
     .card-image {
       height: 250px; // Fixed height for the image
