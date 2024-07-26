@@ -1,0 +1,28 @@
+$scss-prefix: ghb- !default;
+
+
+$card-background: #ffffff !default;
+$card-overlay-background: #ffffff !default;
+$card-title: #000000 !default;
+$card-text: #000000 !default;
+
+
+$project-colors: (
+        'card-background': $card-background,
+        'card-overlay-background': $card-overlay-background,
+        'card-title': $card-title,
+        'card-text': $card-text,
+);
+
+:root
+{
+  @each $color, $value in $project-colors {
+    --#{$scss-prefix}#{$color}: #{$value};
+  }
+}
+
+@each $color, $value in $project-colors {
+  .#{$scss-prefix}bg-#{$color} {
+    background-color: var(--#{$scss-prefix}#{$color}) !important;
+  }
+}
