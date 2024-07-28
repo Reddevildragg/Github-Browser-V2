@@ -1,5 +1,5 @@
 import {App} from 'vue'
-import { createPinia } from 'pinia';
+import "./vue-github-browser.scss"
 
 export interface VueGitHubBrowserPluginOptions
 {
@@ -19,10 +19,6 @@ export class VueGitHubBrowser
 
 export default {
     install(app: App, options: VueGitHubBrowserPluginOptions) {
-
-        const pinia = createPinia();
-        app.use(pinia);
-
         // Provide the global properties to the application
         app.provide('GitHubGlobalProperties', new VueGitHubBrowser(options));
     },

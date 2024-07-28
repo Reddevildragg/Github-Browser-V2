@@ -6,8 +6,8 @@
 
 <script setup>
 import {computed, defineProps, onMounted} from "vue";
-import {useProjectStore} from "../Store/projects";
 import ProjectBox from "./GitHubProjectBox.vue";
+import store from '../Store/storedProjects';
 
 const props = defineProps({
   projectsToShow: Array | undefined
@@ -19,11 +19,11 @@ onMounted(async () =>
   {}
   else
   {
-    await useProjectStore().FetchProjects();
+    await store.FetchProjects();
   }
 })
 
-const projects = computed(() => props.projectsToShow ? props.projectsToShow : useProjectStore().projects);
+const projects = computed(() => props.projectsToShow ? props.projectsToShow : store.state.projects);
 
 </script>
 
