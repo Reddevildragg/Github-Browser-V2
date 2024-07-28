@@ -1779,6 +1779,7 @@ class sr {
 }
 const ar = {
   install(e, t) {
+    console.log("installing Git Hub Browser");
     e.provide("GitHubGlobalProperties", new sr(t));
   }
 };
