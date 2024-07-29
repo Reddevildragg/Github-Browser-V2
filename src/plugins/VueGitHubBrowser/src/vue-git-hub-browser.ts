@@ -1,5 +1,6 @@
 import {App} from 'vue'
 import "./vue-github-browser.scss"
+import {FetchProjects} from "./index.ts";
 
 export interface VueGitHubBrowserPluginOptions
 {
@@ -8,7 +9,7 @@ export interface VueGitHubBrowserPluginOptions
     exclude: string[]
 }
 
-export class VueGitHubBrowser
+export class VueGitHubBrowserOptions
 {
     options: VueGitHubBrowserPluginOptions;
 
@@ -18,8 +19,13 @@ export class VueGitHubBrowser
 }
 
 export default {
-    install(app: App, options: VueGitHubBrowserPluginOptions) {
+    install(app: App, options: VueGitHubBrowserPluginOptions)
+    {
+        const props = new VueGitHubBrowserOptions(options);
+
         // Provide the global properties to the application
-        app.provide('GitHubGlobalProperties', new VueGitHubBrowser(options));
+        app.provide('GitHubGlobalProperties',props );
+
+        FetchProjects(props);
     },
 }

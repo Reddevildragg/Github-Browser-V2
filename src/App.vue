@@ -1,13 +1,17 @@
 <template>
   <div class="w-100 h-100">
-    <git-hub-grid-view :projects-to-show="cards"/>
-    <git-hub-grid-view/>
+    <git-hub-grid-view style="padding-bottom: 25px; padding-top: 25px;" :projects-to-show="cards"/>
+    <git-hub-grid-view style="padding-bottom: 25px; padding-top: 25px;" :searchQuery="'name:unity,customdata.description:this is'"/>
+    <git-hub-grid-view style="padding-bottom: 25px; padding-top: 25px;" :searchQuery="'name:unity'"/>
+
+    <div>{{GetMetaDataValues("owner.login")}}</div>
   </div>
 
 </template>
 
 <script setup lang="ts">
 import {GitHubGridView} from "@/plugins/VueGitHubBrowser/src";
+import {GetMetaDataValues} from "./plugins/VueGitHubBrowser/src";
 
 const cards = [
     {
