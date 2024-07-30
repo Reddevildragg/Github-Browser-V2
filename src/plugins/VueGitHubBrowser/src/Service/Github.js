@@ -12,22 +12,21 @@ export default class github
         return axios.get(`https://api.github.com/orgs/${org}/repos`).then((response) => response.data)
     }
 
-    static GetCustomProjectData(project)
-    {
-            let url = project.html_url;
-            url = url.substring("https://github.com/".length);
-            url = `https://raw.githubusercontent.com/${url}/${project.default_branch}/.viewer/data.json`;
+    static async GetCustomProjectData(project) {
+        let url = project.html_url;
+        url = url.substring("https://github.com/".length);
+        url = `https://raw.githubusercontent.com/${url}/${project.default_branch}/.viewer/data.json`;
 
-            return axios.get(url).then((response) =>
-            {
-                if(response.data)
-                {
-                    return response.data
-                }
-                return [];
-            }).catch(function (error)
-            {
-                return []
-            });
+        try {
+            const response = await axios.get(url);
+            if (response.data) {
+                return response.data;
+            }
+            return []; // Return empty array if response.data is falsy
+        } catch (error) {
+            // Handle specific error cases if needed
+            //console.error('Error fetching project data:', error.message);
+            return []; // Return empty array in case of error
+        }
     }
 }

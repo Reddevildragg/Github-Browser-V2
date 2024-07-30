@@ -68,6 +68,7 @@ function GetImage() {
       height: 250px; // Fixed height for the image
       object-fit: scale-down;
       width: 100%;
+      padding: 5%;
     }
 
     .card-content {

@@ -60,7 +60,7 @@ const Ge = (e, t) => {
   for (const [r, s] of t)
     n[r] = s;
   return n;
-}, Lt = /* @__PURE__ */ Ge(Ft, [["__scopeId", "data-v-99fc2410"]]);
+}, Lt = /* @__PURE__ */ Ge(Ft, [["__scopeId", "data-v-b01024d8"]]);
 const Bt = {
   key: 0,
   class: "card-grid"
@@ -1772,11 +1772,15 @@ class be {
   static GetOrgProjects(t) {
     return ue.get(`https://api.github.com/orgs/${t}/repos`).then((n) => n.data);
   }
-  static GetCustomProjectData(t) {
+  static async GetCustomProjectData(t) {
     let n = t.html_url;
-    return n = n.substring(19), n = `https://raw.githubusercontent.com/${n}/${t.default_branch}/.viewer/data.json`, ue.get(n).then((r) => r.data ? r.data : []).catch(function(r) {
-      return [];
-    });
+    n = n.substring(19), n = `https://raw.githubusercontent.com/${n}/${t.default_branch}/.viewer/data.json`;
+    try {
+      const r = await ue.get(n);
+      return r.data ? r.data : [];
+    } catch (r) {
+      return console.error("Error fetching project data:", r.message), [];
+    }
   }
 }
 class hr {
@@ -1887,7 +1891,6 @@ async function br(e = void 0) {
   var t;
   if (e === void 0 && (e = _t("GitHubGlobalProperties")), e === void 0)
     return [];
-  console.log(e);
   try {
     let n = [];
     for (let r = 0; r < e.options.userRepos.length; r++) {

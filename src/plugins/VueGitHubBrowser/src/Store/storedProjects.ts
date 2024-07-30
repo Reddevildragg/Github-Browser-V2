@@ -20,7 +20,6 @@ export async function FetchProjects(globalProperties : VueGitHubBrowserOptions |
         return[]
     }
 
-    console.log(globalProperties)
     try {
         let data:any[] = [];
         for (let i = 0; i < globalProperties.options.userRepos.length; i++) {
