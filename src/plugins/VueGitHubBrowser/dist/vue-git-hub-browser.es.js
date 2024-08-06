@@ -17,7 +17,7 @@ var se = (e, t, n, r) => ({
     return x(e, t, r);
   }
 });
-import { defineComponent as gt, openBlock as $, createElementBlock as le, createElementVNode as H, toDisplayString as Ne, computed as Pe, Fragment as Et, renderList as St, createBlock as Rt, createCommentVNode as Ot, reactive as Tt, inject as _t } from "vue";
+import { defineComponent as gt, openBlock as $, createElementBlock as le, createElementVNode as I, toDisplayString as Ne, computed as Pe, Fragment as Et, renderList as St, createBlock as Rt, createCommentVNode as Ot, reactive as Tt, inject as _t } from "vue";
 const At = { class: "card" }, xt = ["href"], Ct = ["src"], Nt = { class: "card-content ghb-bg-card-background" }, Pt = { class: "ghb-txt-card-title" }, Dt = { class: "ghb-txt-card-text" }, Ft = /* @__PURE__ */ gt({
   __name: "GitHubProjectBox",
   props: {
@@ -36,19 +36,19 @@ const At = { class: "card" }, xt = ["href"], Ct = ["src"], Nt = { class: "card-c
     return (r, s) => {
       var o, i, c;
       return $(), le("div", At, [
-        H("a", {
+        I("a", {
           href: (o = e.cardDetails) == null ? void 0 : o.html_url,
           target: "_blank",
           class: "card-link"
         }, [
-          H("img", {
+          I("img", {
             src: n(),
             alt: "Card Image",
             class: "card-image"
           }, null, 8, Ct),
-          H("div", Nt, [
-            H("h3", Pt, Ne((i = e.cardDetails) == null ? void 0 : i.name), 1),
-            H("p", Dt, Ne((c = e.cardDetails) == null ? void 0 : c.description), 1)
+          I("div", Nt, [
+            I("h3", Pt, Ne((i = e.cardDetails) == null ? void 0 : i.name), 1),
+            I("p", Dt, Ne((c = e.cardDetails) == null ? void 0 : c.description), 1)
           ])
         ], 8, xt)
       ]);
@@ -94,13 +94,13 @@ const Bt = {
 }, Or = /* @__PURE__ */ Ge(jt, [["__scopeId", "data-v-012484f3"]]);
 class kt {
   constructor(t) {
-    this.options = t || { userRepos: [], orgRepos: [], exclude: [] };
+    this.options = t || { userRepos: [], orgRepos: [], exclude: [], fetchOnInstall: !1 };
   }
 }
 const Tr = {
   install(e, t) {
     const n = new kt(t);
-    e.provide("GitHubGlobalProperties", n), br(n);
+    e.provide("GitHubGlobalProperties", n), t.fetchOnInstall && br(n);
   }
 };
 function Ve(e, t) {
@@ -116,11 +116,11 @@ function qt(e) {
   return e !== null && !v(e) && e.constructor !== null && !v(e.constructor) && O(e.constructor.isBuffer) && e.constructor.isBuffer(e);
 }
 const Je = A("ArrayBuffer");
-function Ht(e) {
+function It(e) {
   let t;
   return typeof ArrayBuffer < "u" && ArrayBuffer.isView ? t = ArrayBuffer.isView(e) : t = e && e.buffer && Je(e.buffer), t;
 }
-const It = Z("string"), O = Z("function"), We = Z("number"), Y = (e) => e !== null && typeof e == "object", vt = (e) => e === !0 || e === !1, G = (e) => {
+const Ht = Z("string"), O = Z("function"), We = Z("number"), Y = (e) => e !== null && typeof e == "object", vt = (e) => e === !0 || e === !1, G = (e) => {
   if (X(e) !== "object")
     return !1;
   const t = ge(e);
@@ -279,8 +279,8 @@ const gn = (e) => {
   isArrayBuffer: Je,
   isBuffer: qt,
   isFormData: Jt,
-  isArrayBufferView: Ht,
-  isString: It,
+  isArrayBufferView: It,
+  isString: Ht,
   isNumber: We,
   isBoolean: vt,
   isObject: Y,
@@ -696,7 +696,7 @@ const Re = {
 a.forEach(["delete", "get", "head", "post", "put", "patch"], (e) => {
   Re.headers[e] = {};
 });
-const Oe = Re, Hn = a.toObjectSet([
+const Oe = Re, In = a.toObjectSet([
   "age",
   "authorization",
   "content-length",
@@ -714,15 +714,15 @@ const Oe = Re, Hn = a.toObjectSet([
   "referer",
   "retry-after",
   "user-agent"
-]), In = (e) => {
+]), Hn = (e) => {
   const t = {};
   let n, r, s;
   return e && e.split(`
 `).forEach(function(i) {
-    s = i.indexOf(":"), n = i.substring(0, s).trim().toLowerCase(), r = i.substring(s + 1).trim(), !(!n || t[n] && Hn[n]) && (n === "set-cookie" ? t[n] ? t[n].push(r) : t[n] = [r] : t[n] = t[n] ? t[n] + ", " + r : r);
+    s = i.indexOf(":"), n = i.substring(0, s).trim().toLowerCase(), r = i.substring(s + 1).trim(), !(!n || t[n] && In[n]) && (n === "set-cookie" ? t[n] ? t[n].push(r) : t[n] = [r] : t[n] = t[n] ? t[n] + ", " + r : r);
   }), t;
 }, ke = Symbol("internals");
-function I(e) {
+function H(e) {
   return e && String(e).trim().toLowerCase();
 }
 function V(e) {
@@ -767,7 +767,7 @@ class te {
   set(t, n, r) {
     const s = this;
     function o(c, l, f) {
-      const u = I(l);
+      const u = H(l);
       if (!u)
         throw new Error("header name must be a non-empty string");
       const d = a.findKey(s, u);
@@ -777,7 +777,7 @@ class te {
     if (a.isPlainObject(t) || t instanceof this.constructor)
       i(t, n);
     else if (a.isString(t) && (t = t.trim()) && !Mn(t))
-      i(In(t), n);
+      i(Hn(t), n);
     else if (a.isHeaders(t))
       for (const [c, l] of t.entries())
         o(l, c, r);
@@ -786,7 +786,7 @@ class te {
     return this;
   }
   get(t, n) {
-    if (t = I(t), t) {
+    if (t = H(t), t) {
       const r = a.findKey(this, t);
       if (r) {
         const s = this[r];
@@ -803,7 +803,7 @@ class te {
     }
   }
   has(t, n) {
-    if (t = I(t), t) {
+    if (t = H(t), t) {
       const r = a.findKey(this, t);
       return !!(r && this[r] !== void 0 && (!n || ie(this, this[r], r, n)));
     }
@@ -813,7 +813,7 @@ class te {
     const r = this;
     let s = !1;
     function o(i) {
-      if (i = I(i), i) {
+      if (i = H(i), i) {
         const c = a.findKey(r, i);
         c && (!n || ie(r, r[c], c, n)) && (delete r[c], s = !0);
       }
@@ -872,7 +872,7 @@ class te {
       accessors: {}
     }).accessors, s = this.prototype;
     function o(i) {
-      const c = I(i);
+      const c = H(i);
       r[c] || ($n(s, i), r[c] = !0);
     }
     return a.isArray(t) ? t.forEach(o) : o(t), this;
@@ -1231,7 +1231,7 @@ const lt = (e) => {
   }, {
     highWaterMark: 2
   });
-}, He = (e, t) => {
+}, Ie = (e, t) => {
   const n = e != null;
   return (r) => setTimeout(() => t({
     lengthComputable: n,
@@ -1248,7 +1248,7 @@ const lt = (e) => {
     }
   }).headers.has("Content-Type");
   return e && !t;
-})(), Ie = 64 * 1024, he = ft && !!(() => {
+})(), He = 64 * 1024, he = ft && !!(() => {
   try {
     return a.isReadableStream(new Response("").body);
   } catch {
@@ -1307,7 +1307,7 @@ const or = async (e) => {
         body: r,
         duplex: "half"
       }), j;
-      a.isFormData(r) && (j = P.headers.get("content-type")) && u.setContentType(j), P.body && (r = qe(P.body, Ie, He(
+      a.isFormData(r) && (j = P.headers.get("content-type")) && u.setContentType(j), P.body && (r = qe(P.body, He, Ie(
         C,
         W(l)
       ), null, pe));
@@ -1330,7 +1330,7 @@ const or = async (e) => {
       });
       const j = a.toFiniteNumber(w.headers.get("content-length"));
       w = new Response(
-        qe(w.body, Ie, c && He(
+        qe(w.body, He, c && Ie(
           j,
           W(c, !0)
         ), q && S, pe),
@@ -1778,8 +1778,8 @@ class be {
     try {
       const r = await ue.get(n);
       return r.data ? r.data : [];
-    } catch (r) {
-      return console.error("Error fetching project data:", r.message), [];
+    } catch {
+      return [];
     }
   }
 }
