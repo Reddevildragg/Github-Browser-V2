@@ -60,7 +60,7 @@ const Ge = (e, t) => {
   for (const [r, s] of t)
     n[r] = s;
   return n;
-}, Lt = /* @__PURE__ */ Ge(Ft, [["__scopeId", "data-v-b01024d8"]]);
+}, Lt = /* @__PURE__ */ Ge(Ft, [["__scopeId", "data-v-2ba4f0d5"]]);
 const Bt = {
   key: 0,
   class: "card-grid"

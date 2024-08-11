@@ -82,6 +82,10 @@ function GetImage() {
       box-sizing: border-box; // Include padding and border in the element's width and height
       text-align: center;
 
+      @media (max-width: 480px) {
+        transform: translateY(0);
+      }
+
       h3 {
         font-size: 1.2rem;
         margin-bottom: 8px;
